@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            html {
+              font-family: sans-serif;
+            }
+            body {
+              width: 50%;
+              max-width: 700px;
+              min-width: 550px;
+              margin: 0 auto;
+            }
+        /*  .lastResult {
+              color: yellowgreen;
+              padding: 3px;
+            } */
+        </style>
+    </head>
+    <body>
+        <h1>Number Guessing Game</h1>
+        <p>Let's choose a number between 1 and 100. You can guess it in 10 turns or fewer.</p>
+        <div id = 'message'></div>
+        <input type="number" id="number" />
+        <button id="guessButton">Guess</button>
+        <div>
+            <span id="past-guess"></span>
+        </div>
+        <button id="restartButton">Restart Game</button>
+
+        <script>
+            let random = 26;
+            var turn = 3;
+            var arr = new Array();
+            let resetButton;
+            const _message = document.getElementById("message");
+
+            let button = document.getElementById('guessButton');
+            button.addEventListener('click', function () {
+                let user_guess = document.getElementById("number").value;
+                let user_value = parseInt(user_guess);
+                turn--;
+
+                let check = random==user_value;
+                if (turn >= 0) {    
+                    if (check) {
+                        _message.innerHTML = "<strong> Congratulations!! You guessed correctly. </strong>"
+                        _message.style.backgroundColor = 'lime';
+                        setGameOver();
+                    } else if (user_value < random) {
+                        _message.innerHTML = `Sorry your guess is too low. You have ${turn} guess left`;
+                        _message.style.backgroundColor = 'yellow';
+                    } else if (user_guess > random) {
+                        _message.innerHTML = `Sorry your guess is too high. You have ${turn} guess left`;
+                        _message.style.backgroundColor = 'red' ;
+                    }
+                } else {
+                    _message.innerHTML = "<strong> !!!  GAME OVER !!! </strong>";
+                    _message.style.backgroundColor = 'white';
+                    setGameOver();
+                }    
+                document.getElementById("past-guess").innerHTML = 'Your past guesses are ' + arr;
+                arr.push(user_value);
+
+            });
+            
+           
+            function setGameOver() {
+                button.disabled = true;
+                //resetButton = document.getElementById('restartButton');
+                //resetButton.textContent = 'Start new game';
+                //document.body.append(resetButton);
+                //resetButton.addEventListener('click', location.reload() );
+            }
+            
+        /*    function setGameOver() {
+                    
+                    button.disabled = true;
+                    resetButton = document.createElement('button');
+                    resetButton.textContent = 'Start new game';
+                    document.body.append(resetButton);
+                    resetButton.addEventListener('click', resetGame);
+            }        
+            function resetGame() {
+                    button.disabled = false;
+                    document.body.remove(resetButton);
+                    startGame();
+            };
+            */
+        </script>
+    </body>    
+</html>
