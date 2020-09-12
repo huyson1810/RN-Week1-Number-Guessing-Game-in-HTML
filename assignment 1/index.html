@@ -19,7 +19,7 @@
     </head>
     <body>
         <h1>Number Guessing Game</h1>
-        <p>Let's choose a number between 1 and 100. You can guess it in 10 turns or fewer.</p>
+        <p>Let's choose a number between 1 and 1000. You can guess it in 10 turns or fewer.</p>
         <div id = 'message'></div>
         <input type="number" id="number" />
         <button id="guessButton">Guess</button>
@@ -29,8 +29,8 @@
         <button id="restartButton">Restart Game</button>
 
         <script>
-            let random = 26;
-            var turn = 3;
+            let random =  Math.floor(Math.random() * 1000) + 1;
+            var turn = 10;
             var arr = new Array();
             let resetButton;
             const _message = document.getElementById("message");
@@ -55,7 +55,7 @@
                         _message.style.backgroundColor = 'red' ;
                     }
                 } else {
-                    _message.innerHTML = "<strong> !!!  GAME OVER !!! </strong>";
+                    _message.innerHTML = `<strong> !!!  GAME OVER !!! THE ANSWER IS ${random}  </strong>`;
                     _message.style.backgroundColor = 'white';
                     setGameOver();
                 }    
