@@ -26,7 +26,6 @@
         <div>
             <span id="past-guess"></span>
         </div>
-        <button id="restartButton">Restart Game</button>
 
         <script>
             let random =  Math.floor(Math.random() * 1000) + 1;
@@ -67,10 +66,16 @@
            
             function setGameOver() {
                 button.disabled = true;
-                //resetButton = document.getElementById('restartButton');
-                //resetButton.textContent = 'Start new game';
-                //document.body.append(resetButton);
-                //resetButton.addEventListener('click', location.reload() );
+                setTimeout(() => {
+                    location = '';
+                }, 2000);
+                resetButton = document.createElement('button');
+                resetButton.textContent = 'Start new game';
+                document.body.append(resetButton);
+                resetButton.addEventListener('click', setTimeout(() => {
+                    location = '';
+                    }, 3000) 
+                );
             }
             
         /*    function setGameOver() {
